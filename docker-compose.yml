@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  web:
+    container_name: web
+    build: .
+    ports:
+      - 8081:8081
+    volumes:
+      - .:/app
+    environment:
+      - MEMCAHCHED_PORT=11211
+    depends_on:
+      - memcached
+  memcached:
+    container_name: memcached
+    image: memcached:latest
+    ports:
+      - 11211:11211
